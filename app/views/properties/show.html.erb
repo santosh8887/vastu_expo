@@ -1,0 +1,235 @@
+<div class="container"><!-- container via hooks -->
+  <div id="main" class="row-fluid">
+    <section  id="content" class="span9" role="main">
+      <%= link_to 'Edit', edit_property_path(@property), class: "btn btn-contact" if user_signed_in? %>
+      <article class="post-56 property type-property status-publish hentry clearfix" id="property-56">
+        <div id="property_slider_wrapper">
+          <div id="myCarousel" class="carousel slide">
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+              <% @property.property_attachments.where(small_avatar: nil).each_with_index do|larg_attachment, i|%>
+              <div class="item <%= i == 0 ? 'active' : ''%>">
+              <%= image_tag "#{larg_attachment.avatar_url}", class: "optional_class", width: '870', height: '350', alt: '' %>
+              </div>
+              <% end %>
+            </div>
+            <div class="carousel-thumbnail">
+              <!-- Carousel nav -->
+              <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+              <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+              <ol class="carousel-indicators hidden-phone">
+                <% @property.property_attachments.where(avatar: nil).each_with_index do|small_attachment, i|%>
+                  <li data-target='#myCarousel' data-slide-to="<%= i %>" class="item <%= i == 0 ? 'active' : ''%>">
+                    <%= image_tag "#{small_attachment.small_avatar_url}", width: '80', height: '80', alt: '' %>
+                  </li>
+                <% end %>
+              </ol>              
+            </div>
+          </div>
+        </div><!-- /#property_slider_wrapper -->
+        <div id="single_property_meta_wrapper">
+          <div class="single-property-meta clearfix status-35-text">
+            <span class="meta-size"><i class="ico-size"></i><%= @property.size %>M</span>
+            <span class="meta-bedroom"><i class="ico-bedroom"></i><%= @property.bedroom %><span class="meta-hidden"> Bedrooms</span></span>
+            <span class="meta-bathroom"><i class="ico-bathroom"></i><%= @property.bathroom %><span class="meta-hidden"> Bathrooms</span></span>
+            <span class="meta-garage"><i class="ico-garage"></i><%= @property.garage %><span class="meta-hidden"> Garages</span></span>
+            <span class="meta-print visible-desktop"><i class="ico-print"></i>
+              <span class="print-hidden"><a href="javascript:window.print()">Print this page</a></span>
+            </span>
+            <span class="meta-status">For <%= @property.try(:uses) %></span>
+          </div>
+        </div>
+        <div class="single-property-content-wrapper">
+          <header class="single-property-header">
+            <h3 class="single-property-title"><%= @property.name %></h3>
+            <p class="single-property-address"><%= @property.address %></p>
+          </header>
+          <div class="single-property-price">
+            <p><h3><sup class="price-curr">$</sup><%= @property.size %>&nbsp;<span class="price-postfix"></span></h3></p>
+          </div>
+          <div class="single-property-content">
+            <p><%= @property.larg_description %></p>
+            <p>&nbsp;</p>
+          </div>
+          <div class="single-property-map">
+            <div id="the_map" class="map-wrap clearfix">
+              <span class="map-label">Property Map</span>
+              <div id="property_map"></div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div id="contactAgent" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="contactAgentLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3>
+                Send message to Rahul           
+              </h3>
+            </div>
+            <div class="modal-body">
+              <form id="contact-agent-form" action="#" method="post">
+                <div class="controls controls-row">
+                  <input class="span6" name="name" type="text" placeholder="*Name " required />
+                  <input class="span6" name="email" type="email" placeholder="*Email" required />
+                </div>
+                <div class="controls">
+                  <textarea name="message" class="span12" rows="10" placeholder="*Message" required></textarea>
+                </div>
+                <div class="controls">
+                  <input id="submit" class="btn btn-contact" type="submit" name="submit" value="Send" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section><!-- #content -->
+    <section id="sidebar" class="span3" role="complementary">
+      <aside id="property_agent-2" class="widget property-agent">
+        <h3 class="widget-title">Get a deal</h3>
+        <div class="content-widget">
+        <div class="agent-widget-name">ABC Developers</div>
+        
+        <div class="clear"></div>
+        <div class="agent-widget-excerpt">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidu</div><p>&nbsp;</p>
+        <div class="agent-desc"><a role="button" data-toggle="modal" class="button button-search-widget" href="#contactAgent">Contact Now</a></div></div><!-- /.content-widget -->
+      </aside>
+      <aside id="property-search-widget-2" class="widget widget-property-search">
+        <h3 class="widget-title">Property Search</h3>
+        <div class="content-widget">
+          <form class="advance-search-form" action="#property_search" method="get">
+            <div class="option-bar location">
+              <input id="select-type_input" class="selectbox" autocomplete="off" type="text">
+            </div>
+            <div class="option-bar location">
+              <input class="input-location" type="text" name="real_location" placeholder="e.g. 21 street, Many Hill, New York" />
+            </div>
+            <div class="option-bar type">
+              <span class="selectwrap">
+                <select name="real_type" id="select-type" class="search-select">
+                  <option value="apartments">Apartments</option>
+                  <option value="bungalows">Bungalows</option>
+                  <option value="condominium">Condominium</option>
+                  <option value="villas">Villas</option>
+                  <option value="any" selected="selected">Type - Any</option>
+                </select>
+              </span>
+            </div>
+            <div class="option-bar status">
+              <span class="selectwrap">
+                <select name="real_status" id="select-status" class="search-select">
+                  <option value="for-rent">For Rent</option>
+                  <option value="for-sale">For Sale</option>
+                  <option value="any" selected>Status</option>
+                </select>
+              </span>
+            </div>
+            <div class="option-bar bedroom">
+              <span class="selectwrap">
+                <select name="real_bedroom" id="select-bedroom" class="search-select">
+                  <option value="1">1</option><option value="2">2</option>
+                  <option value="3">3</option><option value="4">4</option>
+                  <option value="5">5</option><option value="6">6</option>
+                  <option value="7">7</option><option value="8">8</option>
+                  <option value="9">9</option><option value="10">10</option>
+                  <option value="any" selected="selected">Bedroom</option>
+                </select>
+              </span>
+            </div>
+            <div class="option-bar bathroom">
+              <span class="selectwrap">
+                <select name="real_bathroom" id="select-bathroom" class="search-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="any" selected="selected">Bathroom</option>
+                </select>
+              </span>
+            </div>
+            <div class="option-bar min-price">
+              <span class="selectwrap">
+                <select name="min_price" id="select-min-price" class="search-select">
+                  <option value="1000">$1,000</option>
+                  <option value="5000">$5,000</option>
+                  <option value="10000">$10,000</option>
+                  <option value="50000">$50,000</option>
+                  <option value="100000">$100,000</option>
+                  <option value="200000">$200,000</option>
+                  <option value="300000">$300,000</option>
+                  <option value="400000">$400,000</option>
+                  <option value="500000">$500,000</option>
+                  <option value="600000">$600,000</option>
+                  <option value="700000">$700,000</option>
+                  <option value="800000">$800,000</option>
+                  <option value="900000">$900,000</option>
+                  <option value="1000000">$1,000,000</option>
+                  <option value="1500000">$1,500,000</option>
+                  <option value="2000000">$2,000,000</option>
+                  <option value="2500000">$2,500,000</option>
+                  <option value="5000000">$5,000,000</option>
+                  <option value="any" selected="selected">Min. Price</option>
+                </select>
+              </span>
+            </div>
+            <div class="option-bar max-price">
+              <span class="selectwrap">
+                <select name="max_price" id="select-max-price" class="search-select">
+                  <option value="5000">$5,000</option>
+                  <option value="10000">$10,000</option>
+                  <option value="50000">$50,000</option>
+                  <option value="100000">$100,000</option>
+                  <option value="200000">$200,000</option>
+                  <option value="300000">$300,000</option>
+                  <option value="400000">$400,000</option>
+                  <option value="500000">$500,000</option>
+                  <option value="600000">$600,000</option>
+                  <option value="700000">$700,000</option>
+                  <option value="800000">$800,000</option>
+                  <option value="900000">$900,000</option>
+                  <option value="1000000">$1,000,000</option>
+                  <option value="1500000">$1,500,000</option>
+                  <option value="2000000">$2,000,000</option>
+                  <option value="2500000">$2,500,000</option>
+                  <option value="5000000">$5,000,000</option>
+                  <option value="10000000">$10,000,000</option>
+                  <option value="any" selected="selected">Max. Price</option>
+                </select>
+              </span>
+            </div>
+            <input type="submit" name="submit" class="button button-search-widget" value="Search" />
+          </form>
+        </div><!-- /.content-widget -->
+      </aside>
+      <aside id="wolf-twitter-widget-3" class="widget wolf-twitter-widget">
+        <h3 class="widget-title">Twitter Feed</h3>
+        <div class="content-widget">
+          <ul class="wolf-tweet-list">
+            <li>
+              <span class="wolf-tweet-time"><a href="#" target="_blank">about 7 hours  ago</a></span><span class="wolf-tweet-text">One of the best parts of <a href="#" target="_blank">#Movember</a>: seeing Bricey from <a href="#" target="_blank">#Envato</a> HQ dressed as Magnum P.I. @ Envato <a href="#" target="_blank">http://t.co/rkQK2JXaj7</a></span>
+            </li>
+            <li>
+              <span class="wolf-tweet-time"><a href="#" target="_blank">about 3 days  ago</a></span><span class="wolf-tweet-text">RT <a href="#" target="_blank">@justinfrench</a>: Envato is looking for a Front End Developer. Help us make all the things awesome. <a href="h#" target="_blank">http://t.co/XSvEjwFSDb</a></span>
+            </li>
+            <li>
+              <span class="wolf-tweet-time"><a href="#" target="_blank">about 3 days  ago</a></span><span class="wolf-tweet-text">RT <a href="#" target="_blank">@tutsplus</a>: We've just launched our brand new Tuts+ Blog! Read on for insight into the thoughts and people behind Tuts+ - <a href="#" target="_blank">http://t.co/vM6…</a></span>
+            </li>
+          </ul>
+        </div><!-- /.content-widget -->
+      </aside>
+    </section><!-- #sidebar -->
+  </div><!-- /#main -->
+  <% if @related_properties.present? %>
+    <div class="single-property-related ">
+      <span class="map-label">Related Property</span>
+      <div class="row-fluid">
+        <%= render partial: "/properties/categories", locals: { properties: @related_properties } %> 
+      </div>
+    </div><!-- /.single-propety-related -->
+  <% end %>
+</div><!-- /.container-->

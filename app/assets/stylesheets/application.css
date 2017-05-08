@@ -1,0 +1,65 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap.min
+ *= require bootstrap-responsive.min
+ *= require_self
+ *= require font-awesome
+ *= require style
+ *= require_tree .
+ */
+
+
+ @font-face
+    {
+      font-family: ProximaNova;
+      src:url("library/fonts/ProximaNova-Regular.otf") format("opentype");
+      font-weight:normal;
+    }
+
+    @font-face{
+      font-family: ProximaNova;
+      src:url("library/fonts/ProximaNova-Light.otf") format("opentype");
+      font-weight:200;
+    }
+
+    @font-face{
+      font-family: ProximaNova;
+      src:url("library/fonts/ProximaNova-Bold.otf") format("opentype");
+      font-weight:bold;
+    }
+
+    @font-face{
+      font-family: ProximaNova;
+      src:url("library/fonts/ProximaNova-Semibold.otf") format("opentype");
+      font-weight:600;
+    }
+    body{
+      font-family:ProximaNova;
+      color:#757c80;
+    }
+    input, button, select, textarea{
+      font-family:ProximaNova;
+    }
+    .status-28-text{
+      background-color : #ec4d3a;
+    }
+    .status-28{
+      border-bottom:5px solid #ec4d3a !important;
+    }
+  
+    .status-35-text{
+      background-color : #007bb0;
+    }
+    .status-35{
+      border-bottom:5px solid #007bb0 !important;
+    }

@@ -1,0 +1,47 @@
+<section id="footer_widgets">
+      <div id="footer_widget_wrapper">
+        <div class="container">
+          <div class="row-fluid">
+            <div id="text-2" class="span4 widget widget_text">
+              <h3 class="widget-title">About Vastu Expo</h3>
+              <div class="textwidget">
+                <p>Aquam est tortor, sagittis in fringilla in, pellent esque nec erat.  Aenean semper, neque non faucibus. tortor, sagittis in fringilla in, pellent esque nec eratsemper, neque non.</p>
+                <p>Malesuada, dui felis tempor felis, vel varius ante diam ut mais eque non faucibus. tortor, sagittis. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+              </div>
+            </div>
+            <div id="pages-2" class="span2 widget widget_pages">
+              <h3 class="widget-title">Company</h3>
+              <ul>
+                <li class="page_item page-item-14"><a href="#">About Us</a></li>
+                <li class="page_item page-item-18"><a href="#">Careers</a></li>
+                <li class="page_item page-item-115"><a href="#">Disclaimer</a></li>
+                <li class="page_item page-item-1864"><a href="#">Contact Us</a></li>
+                <li class="page_item page-item-1681"><a href="#">Sitemap</a></li>
+              </ul>
+            </div>
+            <div id="pages-5" class="span2 widget widget_pages">
+              <h3 class="widget-title">Quick Links</h3>
+              <ul>
+                <li class="page_item page-item-14"><a href="#">Blog</a></li>
+                <li class="page_item page-item-18"><a href="#">Contact Us</a></li>
+                <li class="page_item page-item-115"><a href="#">Listing</a></li>
+                <li class="page_item page-item-1864"><a href="#">Property Listing</a></li>
+                <li class="page_item page-item-1681"><a href="#">Property Search</a></li>
+                <li class="page_item page-item-1675"><a href="#">Special Tabs</a></li>
+              </ul>
+            </div>
+                        <div id="pages-5" class="span2 widget widget_pages">
+              <h3 class="widget-title">Popular Links</h3>
+              <ul>
+              <% Property.area_wise_property_list.each do|property|%>
+                <% unless property.area.blank? %>
+                  <li class="page_item page-item-14"><%= link_to "Vastu in #{property.area}", properties_path(area: property.area)%></li>
+                <%end%> 
+              <%end%>  
+              </ul>
+            </div>
+             
+          </div>
+        </div>
+      </div><!-- /.footer-widget-wrapper -->
+    </section><!-- #footer_widgets -->

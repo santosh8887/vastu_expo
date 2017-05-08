@@ -1,0 +1,25 @@
+<% if properties.present? %>
+  <% properties.each do|property| %>
+    <div class="span3">
+    <article class="property-item">
+      <div class="property-images">
+        <a href="/properties/<%= property.id %>" title="<%= property.name %>">
+          <%= image_tag property.property_attachments.first.avatar_url, width: "540", height: "360", class: "status-35 wp-post-image", alt: "#{property.name}", title: "#{property.name}" %>
+        </a>
+      </div><!-- /.property-images -->
+      <div class="property-attribute">
+        <h3 class="attribute-title"><%= link_to "#{property.name}", property_path(property), title: "#{ property.name }" %><i class="icon-heart"></i></h3>
+        <span class="attribute-city"><%= property.city %></span>
+        <div class="attribute-price">
+          <span class="attr-pricing"><sup class="price-curr">RS</sup><%= property.amount %></span>
+        </div>
+      </div>
+      <div class="property-meta clearfix">
+        <div class="meta-size meta-block"><i class="ico-size"></i><span class="meta-text"><%= property.size %>M</span></div>
+        <div class="meta-bedroom meta-block"><i class="ico-bedroom"></i><span class="meta-text"><%= property.bedroom %></span></div>
+        <div class="meta-bathroom meta-block"><i class="ico-bathroom"></i><span class="meta-text"><%= property.bathroom %></span></div>
+      </div>
+    </article>
+    </div>
+  <% end %>
+<% end %>

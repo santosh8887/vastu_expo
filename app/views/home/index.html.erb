@@ -1,0 +1,47 @@
+<div id="property_list" class="container">    
+  <div id="title-listing" class="container">
+    <div class="property-list-title">Featured Properties</div>
+    <div class="property-list-by">
+      <a class="current" href="#">All</a>
+      <a class="" href="#">Apartments</a>
+      <a class="" href="#">Plots</a>
+  </div>
+  </div><!-- /#title-listing -->
+  <% if @recent_properties.present? %>
+    <div class="row-fluid property-row">
+      <%= render partial: "/properties/categories", locals: { properties: @featured_properties } %>
+    </div> 
+  <% end %>
+</div><!-- /#property_list -->
+
+
+<% if @recent_properties.present? %>
+  <div id="property_info">
+    <div class="container carousel-wrapper">
+      <div id="recent-title-listing" class="container">
+        <div class="recent-property-list-title">Recent Properties</div>
+        <div class="recent-property-list-by">
+          <div class="jcarousel-control">
+            <a href="#" class="jcarousel-control-prev">
+              <span class="icon-stack">
+                <i class="icon-stop icon-stack-base"></i>
+                <i class="icon-chevron-left"></i>
+              </span>
+            </a>
+            <a href="#" class="jcarousel-control-next">
+              <span class="icon-stack">
+                <i class="icon-stop icon-stack-base"></i>
+                <i class="icon-chevron-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div><!-- /#title-listing -->
+      <div class="jcarousel container">
+        <div class="jcontainer">
+          <%= render partial: "/properties/categories", locals: { properties: @recent_properties } %>             
+        </div><!-- jcontainer -->
+      </div><!-- /.jcarousel -->
+    </div><!-- /.container -->
+  </div><!-- /#property_info -->
+<% end %>  

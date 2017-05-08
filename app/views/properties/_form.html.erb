@@ -1,0 +1,132 @@
+<%= form_for(@property) do |f| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% @property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="span6">
+    <h3 class="attribute-title">Basic Information</h3>
+    <div class="field span3" >
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :amount %><br>
+      <%= f.number_field :amount %>
+    </div>
+      <div class="field span3">
+      <%= f.label :size %><br>
+      <%= f.text_field :size %>
+    </div>
+    <div class="field">
+      <%= f.label :garage %><br>
+      <%= f.text_field :garage %>
+    </div>
+    <div class="field span3">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :larg_description %><br>
+      <%= f.text_area :larg_description %>
+    </div>
+    <div class="field span3">
+      <%= f.label :bedroom %><br>
+      <%= f.text_field :bedroom %>
+    </div>
+    <div class="field">
+      <%= f.label :bathroom %><br>
+      <%= f.text_field :bathroom %>
+    </div>
+    <div class="field span3">
+      <%= f.label :category, "Property category" %><br>
+      <%= f.select("category", Property::CATEGORIES, { prompt: "Select something" }) %>
+    </div>
+    <div class="field">
+      <%= f.label :uses, "Property uses" %><br>
+      <%= f.select("uses", Property::USES, { prompt: "Select something" }) %>
+    </div>
+    <div class="field span3">
+      <%= f.check_box :status, style: "float: left;" %>
+      <%= f.label :status, "Is it active Property?", style: "float: left;" %><br><br>
+    </div>
+    
+  </div>
+
+  <div class="span6">
+   <h3 class="attribute-title">Address</h3>
+    <div class="field span3">
+      <%= f.label :address_line_1 %><br>
+      <%= f.text_field :address_line_1 %>
+    </div>
+    <div class="field">
+      <%= f.label :address_line_2 %><br>
+      <%= f.text_field :address_line_2 %>
+    </div>
+    <div class="field span3">
+      <%= f.label :area %><br>
+      <%= f.text_field :area %>
+    </div>
+    <div class="field">
+      <%= f.label :city %><br>
+      <%= f.text_field :city %>
+    </div>
+    <div class="field span3">
+      <%= f.label :pin %><br>
+      <%= f.text_field :pin %>
+    </div>
+    <div class="field">
+      <%= f.label :state %><br>
+      <%= f.text_field :state %>
+    </div>
+    <div class="field span3">
+      <%= f.label :country %><br>
+      <%= f.text_field :country %>
+    </div>
+  </div>
+
+  <div class="span6">
+    <h3 class="attribute-title">Images</h3>
+    <h5>Every Large image shuld have small image for slider in detail page</h5  >
+    <div class="field span3">
+      <%= "Larg Images" %>
+    </div>
+    <div class="field">
+      <%= "Small Images" %>
+    </div>
+    <%= f.fields_for :property_attachments do |p| %>
+
+      <% if params[:action] == "new" || p.object.avatar_url.present? %>
+         <div class="field span3">
+           <%= image_tag "#{p.object.avatar_url}", width: '80', height: '80', alt: '' %><br>
+           <%= p.file_field :avatar, :multiple => true, name: "property_attachments[avatar][]" %>
+         </div>
+      <% end %>
+      
+      <% if params[:action] == "new" || p.object.small_avatar_url.present? %>
+       <div class="field">
+         <%= image_tag "#{p.object.small_avatar_url}", width: '80', height: '80', alt: '' %><br>
+         <%= p.file_field :small_avatar, :multiple => true, name: "property_attachments[small_avatar][]" %>
+       </div>
+     <% end %>  
+    
+   <% end %>
+   <br/><br/>
+    <div class="actions controls">
+      <%= f.submit class: "btn btn-lg btn-success" %>
+    </div>
+    <% end %>
+  </div>
+
+
+  
+  
+
+
