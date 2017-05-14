@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Vastu Expo</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <script type='text/javascript' src='/uploads/bootstrap/js/jquery.placeholder.js'></script>
-  <script type='text/javascript' src='/uploads/bootstrap/js/jquery.selectbox.js'></script>
-  <script type='text/javascript' src='/uploads/bootstrap/js/jquery.form.min.js'></script>
-  <script type='text/javascript' src='/uploads/bootstrap/js/jquery.flexslider.js'></script>
-  <script type='text/javascript' src='/uploads/bootstrap/js/real-expert.js'></script>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Vastu Expo</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <script type='text/javascript' src='/uploads/bootstrap/js/jquery.placeholder.js'></script>
+    <script type='text/javascript' src='/uploads/bootstrap/js/jquery.selectbox.js'></script>
+    <script type='text/javascript' src='/uploads/bootstrap/js/jquery.form.min.js'></script>
+    
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-  <div class="container-full">
-    <header id="header" role="banner">
-      <div class="header-background">
-        <div class="container">
-          <div class="row-fluid">
-            <div class="pull-left">
-              <a href="#" title="Real Expert" rel="home">
-                <%= image_tag "logo.png", class: "site-logo", alt: "VastuExpo Logo" %>
-              </a>
-            </div>
-            <div class="pull-right">
-              <div class="top-menu">
-                <span class="contact-info"><i class="contact-email"></i>
-                  <a href="#">Call us for best deal : +91 97630 94453</a>
-                </span>
-                <% if user_signed_in? %>
-                  <span class="contact-info"><i class="fa fa-user fa-fw"></i>
-                     <%= "#{current_user.email}" unless current_user.nil?%>
-                  </span>
+    <div class="container-full">
+      <header id="header" role="banner">
+        <div class="header-background">
+          <div class="container">
+            <div class="row-fluid">
+              <div class="pull-left">
+                <a href="#" title="Real Expert" rel="home">
+                  <%= image_tag "logo.png", class: "site-logo", alt: "VastuExpo Logo" %>
+                </a>
+              </div>
+              <div class="pull-right">
+                <div class="top-menu">
                   <span class="contact-info"><i class="contact-email"></i>
-                     <%= link_to '<i class="fa fa-sign-out fa-fw"></i>Logout</a>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+                    <a href="#">Call us for best deal : +91 97630 94453</a>
                   </span>
-                <% end %>
+                  <% if user_signed_in? %>
+                    <span class="contact-info"><i class="fa fa-user fa-fw"></i>
+                       <%= "#{current_user.email}" unless current_user.nil?%>
+                    </span>
+                    <span class="contact-info"><i class="contact-email"></i>
+                       <%= link_to '<i class="fa fa-sign-out fa-fw"></i>Logout</a>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+                    </span>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <%= render 'layouts/navigations' %>
-    </header><!-- #header -->       
-    <div class="content-wrapper clearfix">
-	    <%if params[:controller] == "home"%>
-	      <%= render 'layouts/headline_container' %>
-	    <%else%>  
-		    <header id="banner">
-					<div id="banner_container" class="container">
-						<h3 class="banner-title">Properties Listing</h3>
-						<p class="banner-subtitle"></p>
-					</div>
-				</header>
-	    <%end%>  
-      <%= yield %>
-    </div><!-- /.content-wrapper -->
-    <%= render 'layouts/footer_widgets' %>
-    <footer id="footer">
-      <div class="container cleafix">
-        <p class="pull-left">Copyright 2017, All Rights Reserved by VastuExpo</p>
-        <div class="pull-right">
-          <ul class="footer-social">
-            <li><a href="http://www.facebook.com/" title="Facebook"><i class="icon-facebook"></i></a>F</li>
-            <li><a href="http://www.twitter.com/" title="Twitter"><i class="icon-twitter"></i></a>T</li>
-            </ul>
+        <%= render 'layouts/navigations' %>
+      </header><!-- #header -->       
+      <div class="content-wrapper clearfix">
+        <%if params[:controller] == "home"%>
+          <%= render 'layouts/headline_container' %>
+        <%else%>  
+    	    <header id="banner">
+    				<div id="banner_container" class="container">
+    					<h3 class="banner-title">Properties Listing</h3>
+    					<p class="banner-subtitle"></p>
+    				</div>
+    			</header>
+        <%end%>  
+        <%= yield %>
+      </div><!-- /.content-wrapper -->
+      <%= render 'layouts/footer_widgets' %>
+      <footer id="footer">
+        <div class="container cleafix">
+          <p class="pull-left">Copyright 2017, All Rights Reserved by VastuExpo</p>
+          <div class="pull-right">
+            <ul class="footer-social">
+              <li><a href="http://www.facebook.com/" title="Facebook"><i class="icon-facebook"></i></a>F</li>
+              <li><a href="http://www.twitter.com/" title="Twitter"><i class="icon-twitter"></i></a>T</li>
+              </ul>
+          </div>
         </div>
-      </div>
-    </footer>
-  </div><!-- .container-full -->
+      </footer>
+    </div><!-- .container-full -->
 
-
-
-</body>
+  </body>
 </html>

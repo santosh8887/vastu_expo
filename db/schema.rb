@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(version: 20170507144258) do
     t.string   "garage"
     t.boolean  "status"
     t.string   "uses"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "category"
+    t.text     "address"
     t.string   "address_line_1"
     t.string   "address_line_2"
     t.string   "area"
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170507144258) do
     t.string   "pin"
     t.string   "state"
     t.string   "country"
+    t.boolean  "is_futured",       default: false
   end
 
   create_table "property_attachments", force: :cascade do |t|

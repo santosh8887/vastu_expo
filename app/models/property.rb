@@ -2,10 +2,12 @@ class Property < ActiveRecord::Base
 	has_many :property_attachments
   accepts_nested_attributes_for :property_attachments
 
-  scope :get_properties, -> (category){ where(category: category) }
+  scope :by_category, -> (category){ where(category: category) }
+  scope :get_featured_properties, -> { where(is_futured: true) }
+  scope :get_recent_properties, -> { where(is_futured: false) }
   scope :by_area, -> (area){ where(area: area) }
   
-  CATEGORIES = ["New Property", "Featured Property", "Recent Property"]
+  CATEGORIES = ["Apartments", "Bungalows", "Condominium", "Villas", "Row Houses", "Plots"]
   USES = ["For Rent", "For Sale"]
 
   def address
@@ -22,6 +24,7 @@ class Property < ActiveRecord::Base
   def self.area_wise_property_list
   	Property.select('id, area').where.not(area: ["", nil]).first(5)
   end
+    
   
 
 end

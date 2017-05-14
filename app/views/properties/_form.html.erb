@@ -13,81 +13,84 @@
 
   <div class="span6">
     <h3 class="attribute-title">Basic Information</h3>
-    <div class="field span3" >
-      <%= f.label :name %><br>
+    <div class="field " >
+      <%= f.label :name %>
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label :amount %><br>
+      <%= f.label :amount %>
       <%= f.number_field :amount %>
     </div>
-      <div class="field span3">
-      <%= f.label :size %><br>
+      <div class="field ">
+      <%= f.label :size %>
       <%= f.text_field :size %>
     </div>
     <div class="field">
-      <%= f.label :garage %><br>
+      <%= f.label :garage %>
       <%= f.text_field :garage %>
     </div>
-    <div class="field span3">
-      <%= f.label :description %><br>
+    <div class="field ">
+      <%= f.label :description %>
       <%= f.text_area :description %>
     </div>
     <div class="field">
-      <%= f.label :larg_description %><br>
+      <%= f.label :larg_description %>
       <%= f.text_area :larg_description %>
     </div>
-    <div class="field span3">
-      <%= f.label :bedroom %><br>
+    <div class="field ">
+      <%= f.label :bedroom %>
       <%= f.text_field :bedroom %>
     </div>
     <div class="field">
-      <%= f.label :bathroom %><br>
+      <%= f.label :bathroom %>
       <%= f.text_field :bathroom %>
     </div>
-    <div class="field span3">
-      <%= f.label :category, "Property category" %><br>
+    <div class="field ">
+      <%= f.label :category, "Property category" %>
       <%= f.select("category", Property::CATEGORIES, { prompt: "Select something" }) %>
     </div>
     <div class="field">
-      <%= f.label :uses, "Property uses" %><br>
+      <%= f.label :uses, "Property uses" %>
       <%= f.select("uses", Property::USES, { prompt: "Select something" }) %>
     </div>
-    <div class="field span3">
+    <div class="field ">
       <%= f.check_box :status, style: "float: left;" %>
-      <%= f.label :status, "Is it active Property?", style: "float: left;" %><br><br>
+      <%= f.label :status, "Is it active Property?", style: "float: left;" %><br/>
     </div>
-    
+    <div class="field ">
+      <%= f.check_box :is_futured, style: "float: left;" %>
+      <%= f.label :is_futured, "Is it futured Property?", style: "float: left;" %>
+    </div>
   </div>
 
   <div class="span6">
    <h3 class="attribute-title">Address</h3>
-    <div class="field span3">
-      <%= f.label :address_line_1 %><br>
+    <div class="field ">
+      <%= f.label :address_line_1 %>
       <%= f.text_field :address_line_1 %>
     </div>
     <div class="field">
-      <%= f.label :address_line_2 %><br>
+      <%= f.label :address_line_2 %>
       <%= f.text_field :address_line_2 %>
     </div>
-    <div class="field span3">
-      <%= f.label :area %><br>
+    <div class="field ">
+      <%= f.label :area %>
       <%= f.text_field :area %>
     </div>
     <div class="field">
-      <%= f.label :city %><br>
+      <%= f.label :city %>
       <%= f.text_field :city %>
     </div>
-    <div class="field span3">
-      <%= f.label :pin %><br>
+    <div class="field ">
+      <%= f.label :pin %>
       <%= f.text_field :pin %>
     </div>
     <div class="field">
-      <%= f.label :state %><br>
+      <%= f.label :state %>
       <%= f.text_field :state %>
     </div>
-    <div class="field span3">
-      <%= f.label :country %><br>
+    <div class="field ">
+      <%= f.label :country %>
       <%= f.text_field :country %>
     </div>
   </div>
@@ -111,7 +114,7 @@
       <% end %>
       
       <% if params[:action] == "new" || p.object.small_avatar_url.present? %>
-       <div class="field">
+       <div class="field ">
          <%= image_tag "#{p.object.small_avatar_url}", width: '80', height: '80', alt: '' %><br>
          <%= p.file_field :small_avatar, :multiple => true, name: "property_attachments[small_avatar][]" %>
        </div>

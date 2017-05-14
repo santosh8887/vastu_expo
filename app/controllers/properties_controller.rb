@@ -13,7 +13,7 @@ class PropertiesController < ApplicationController
   # GET /properties/1.json
   def show
     @property_attachments = @property.property_attachments.all
-    @related_properties = Property.get_properties(@property.category).where.not(id: @property.id)
+    @related_properties = Property.by_category(@property.category).where.not(id: @property.id)
   end
 
   # GET /properties/new
@@ -80,7 +80,7 @@ class PropertiesController < ApplicationController
     def property_params
       params.require(:property).permit(:name, :description, :larg_description, :amount, 
         :size, :bedroom, :bathroom, :garage, :status, :uses, :category,
-        :address_line_1, :address_line_2, :area, :city, :pin, :state, :country,
+        :address_line_1, :address_line_2, :area, :city, :pin, :state, :country, :is_futured,
         property_attachments_attributes: [:id, :property_id, :avatar, :small_avatar])
     end
 end
